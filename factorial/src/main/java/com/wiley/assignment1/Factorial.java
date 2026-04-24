@@ -6,17 +6,17 @@ import java.util.Scanner;
 
 
 public class Factorial {
-	
+
 	 private Scanner scanner;
 	 private PrintStream printStream;
 	 private int num;
-	 
+
 
 	 public Factorial(InputStream inputStream, PrintStream printStream) {
 	      this.scanner = new Scanner(inputStream);
 	      this.printStream = printStream;
 	 }
-	 
+
 	 public int isInputNumberValid()  {
 		 
 		/*
@@ -34,15 +34,31 @@ public class Factorial {
 		*/
 
 		//YOUR CODE STARTS HERE
+		 System.out.println("Give a number:");
+		 if (!this.scanner.hasNextInt()) {
+			 this.printStream.print("Invalid entry. Please enter an integer between 1 and 10, inclusive.");
+			 return -1;
+		 }
+
+		 num = this.scanner.nextInt();
+
+		 if (num < 1 || num > 10) {
+			 this.printStream.print("Invalid entry. Please enter an integer between 1 and 10, inclusive.");
+			 return -1;
+		 }
+			 calculateFactorial(num);
+
 
 		return -1;
 
+
+
 		//YOUR CODE ENDS HERE
-		 
-			
+
+
 	 }
-	
-	 
+
+
 	 private void calculateFactorial(int num) {
 		
 		  /*
@@ -50,39 +66,41 @@ public class Factorial {
 		  
 		  - All code should be inside the placeholders below.
 		*/
-		 
+
 		int result = 1;
 		//YOUR CODE STARTS HERE
+		for (int i = 1; i <= num; i++) {
+			result *= i;
+		}
 
- 
 
 		//YOUR CODE ENDS HERE
-		this.printStream.print("The Factorial is: " + result);		
-		
+		this.printStream.print("The Factorial is: " + result);
+
 	 }
-	 
+
 	 public void calculateFactorial() {
 		 /*
 		 Do not change this method.
 		 */
-		 	
+
 		 int input = this.isInputNumberValid();
 		 if(input != -1)
 		 {
 			 calculateFactorial(input);
 		 }
-		 
-	 }
-	
 
-	 public static void main(String[] args) { 
+	 }
+
+
+	 public static void main(String[] args) {
 		/*
 		 Do not change this method.
 		 */
 		Factorial fact = new Factorial(System.in,System.out);
 		System.out.println("Enter an integer between 1 and 10, inclusive.");
-		fact.calculateFactorial();	
+		fact.calculateFactorial();
 	 }
 
-	
+
 }
